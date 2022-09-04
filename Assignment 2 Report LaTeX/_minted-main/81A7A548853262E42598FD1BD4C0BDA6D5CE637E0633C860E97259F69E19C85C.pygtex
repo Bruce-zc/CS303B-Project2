@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{images}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{.}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{class1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{(}\PYG{n}{labels}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{,:);}
+\PYG{n}{class5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{(}\PYG{n}{labels}\PYG{o}{==}\PYG{l+m+mi}{5}\PYG{p}{,:);}
+\PYG{n}{class8}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{(}\PYG{n}{labels}\PYG{o}{==}\PYG{l+m+mi}{8}\PYG{p}{,:);}
+
+\PYG{c}{\PYGZpc{} class means}
+\PYG{n}{m1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{class1}\PYG{p}{);}
+\PYG{n}{m5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{class5}\PYG{p}{);}
+\PYG{n}{m8}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{class8}\PYG{p}{);}
+\PYG{n}{m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{images}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} class covariance matrix}
+\PYG{n}{s1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cov}\PYG{p}{(}\PYG{n}{class1}\PYG{p}{);}
+\PYG{n}{s5}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cov}\PYG{p}{(}\PYG{n}{class5}\PYG{p}{);}
+\PYG{n}{s8}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cov}\PYG{p}{(}\PYG{n}{class8}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} within class scatter matrix}
+\PYG{n}{sw}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{s1}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{s5}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{s8}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} between class scatter matrix}
+\PYG{n}{mb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{zeros}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{784}\PYG{p}{);}
+\PYG{n}{mb}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{  }\PYG{n}{m1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{;}
+\PYG{n}{mb}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{  }\PYG{n}{m5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{;}
+\PYG{n}{mb}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{:)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{  }\PYG{n}{m8}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{;}
+\PYG{n}{sb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{mb}\PYG{p}{.}\PYG{o}{\PYGZsq{}}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{mb}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{} computing the LDA projection vector}
+\PYG{p}{[}\PYG{n}{v}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{eigs}\PYG{p}{((}\PYG{n+nb}{inv}\PYG{p}{(}\PYG{n}{sw}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mf}{1e\PYGZhy{}10}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{eye}\PYG{p}{(}\PYG{l+m+mi}{784}\PYG{p}{)))}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{sb}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{} computing the projection score:}
+\PYG{n}{score}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{(:,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{);}
+\end{Verbatim}

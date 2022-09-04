@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c}{\PYGZpc{} split the data into 5 fold.}
+\PYG{n}{cvo}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{cvpartition}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}KFold\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{);}
+
+\PYG{n}{predict\PYGZus{}label\PYGZus{}total}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[];}
+\PYG{n}{test\PYGZus{}label\PYGZus{}vector\PYGZus{}total}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[];}
+
+\PYG{c}{\PYGZpc{} cross validation}
+\PYG{n}{accuracy\PYGZus{}avg}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{5}
+\PYG{n}{trIdx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{cvo}\PYG{p}{.}\PYG{n}{training}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} get the index of training samples}
+\PYG{n}{teIdx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{cvo}\PYG{p}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} get the index of the test samples}
+\PYG{n}{training\PYGZus{}label\PYGZus{}vector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{(}\PYG{n}{trIdx}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} creating the training label}
+\PYG{c}{\PYGZpc{}ground truth}
+\PYG{n}{training\PYGZus{}instance\PYGZus{}matrix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{(}\PYG{n}{trIdx}\PYG{p}{,:);}\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} creating the training}
+\PYG{c}{\PYGZpc{}data matrix}
+\PYG{n}{test\PYGZus{}label\PYGZus{}vector}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{(}\PYG{n}{teIdx}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} creating the testing label}
+\PYG{c}{\PYGZpc{}ground truth}
+\PYG{n}{test\PYGZus{}instance\PYGZus{}matrix}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{(}\PYG{n}{teIdx}\PYG{p}{,:);}\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} creating the test data}
+
+\PYG{n}{train}\PYG{k}{...}
+\PYG{n}{predict}\PYG{k}{...}
+
+\PYG{n}{predict\PYGZus{}label\PYGZus{}total}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{predict\PYGZus{}label\PYGZus{}total}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{predict\PYGZus{}label}\PYG{p}{];}
+\PYG{n}{test\PYGZus{}label\PYGZus{}vector\PYGZus{}total}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{test\PYGZus{}label\PYGZus{}vector\PYGZus{}total}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{test\PYGZus{}label\PYGZus{}vector}\PYG{p}{];}
+\PYG{k}{end}
+\PYG{c}{\PYGZpc{} cross validation accuracy}
+\PYG{n}{accuracy\PYGZus{}avg}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{accuracy\PYGZus{}avg}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}
+\end{Verbatim}

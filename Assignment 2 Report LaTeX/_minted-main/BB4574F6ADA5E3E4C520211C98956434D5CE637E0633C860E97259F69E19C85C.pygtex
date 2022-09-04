@@ -1,0 +1,44 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{function}\PYG{+w}{  }auc\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nf}{plot\PYGZus{}roc}\PYG{p}{(}predict, ground\PYGZus{}truth\PYG{p}{)}
+\PYG{c}{\PYGZpc{} plot the ROC curve}
+
+\PYG{n}{x}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{p}{;}
+\PYG{n}{y}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}calculate numbers of positive and negative samples}
+\PYG{n}{pos\PYGZus{}num}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{ground\PYGZus{}truth}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{n}{neg\PYGZus{}num}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sum}\PYG{p}{(}\PYG{n}{ground\PYGZus{}truth}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{}calculate step size for plot}
+\PYG{n}{x\PYGZus{}step}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{n}{neg\PYGZus{}num}\PYG{p}{;}
+\PYG{n}{y\PYGZus{}step}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{n}{pos\PYGZus{}num}\PYG{p}{;}
+
+\PYG{c}{\PYGZpc{}sort the output value}
+\PYG{p}{[}\PYG{o}{\PYGZti{}}\PYG{p}{,}\PYG{n}{index}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sort}\PYG{p}{(}\PYG{n}{predict}\PYG{p}{);}
+\PYG{n}{ground\PYGZus{}truth}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{ground\PYGZus{}truth}\PYG{p}{(}\PYG{n}{index}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{}plot the ROC curve}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{ground\PYGZus{}truth}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{ground\PYGZus{}truth}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{        }\PYG{n}{y}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{y}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{y\PYGZus{}step}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{else}
+\PYG{+w}{        }\PYG{n}{x}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{x\PYGZus{}step}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{n}{X}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)=}\PYG{n}{x}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{Y}\PYG{p}{(}\PYG{n+nb}{i}\PYG{p}{)=}\PYG{n}{y}\PYG{p}{;}
+\PYG{k}{end}
+
+\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{on}\PYG{p}{;}
+\PYG{n}{grid}\PYG{+w}{ }\PYG{l+s}{on}\PYG{p}{;}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{gcf}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}Position\PYGZsq{}}\PYG{p}{,[}\PYG{l+m+mi}{50}\PYG{o}{/}\PYG{l+m+mf}{0.277}\PYG{+w}{ }\PYG{l+m+mi}{50}\PYG{o}{/}\PYG{l+m+mf}{0.277}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{o}{/}\PYG{l+m+mf}{0.277}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{o}{/}\PYG{l+m+mf}{0.277}\PYG{p}{]);}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{Y}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}\PYGZhy{}b\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{);}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{X}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}\PYGZhy{}\PYGZhy{}k\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mf}{0.5}\PYG{p}{)}
+\PYG{n+nb}{xlim}\PYG{p}{([}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]);}\PYG{+w}{ }\PYG{n+nb}{ylim}\PYG{p}{([}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]);}
+
+\PYG{n+nb}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}False Positive Rate\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}latex\PYGZsq{}}\PYG{p}{);}
+\PYG{n+nb}{ylabel}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}True Positive Rate\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}latex\PYGZsq{}}\PYG{p}{);}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}ROC Curve\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}Interpreter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}latex\PYGZsq{}}\PYG{p}{);}
+\PYG{c}{\PYGZpc{}calculate the area under ROC curve, i.e. auc}
+\PYG{n}{auc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n+nb}{trapz}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{Y}\PYG{p}{);}
+\PYG{k}{end}
+\end{Verbatim}

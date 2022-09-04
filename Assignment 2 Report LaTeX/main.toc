@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {section}{\numberline {2}Part I: Dimension Reduction and Clustering}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Principle Component Analysis (PCA) and Clustering}{2}{}%
+\contentsline {subsection}{\numberline {2.2}Linear Discriminant Analysis (LDA) and Clustering}{8}{}%
+\contentsline {subsection}{\numberline {2.3}PCA and LDA Using Larger MNIST Dataset}{12}{}%
+\contentsline {section}{\numberline {3}Part II: Binary Classification}{14}{}%
+\contentsline {subsection}{\numberline {3.1}Preprocessing of Data, Cross-Validation Settings, Generating ROC Curves}{14}{}%
+\contentsline {subsection}{\numberline {3.2}SVM with RBF Kernal}{16}{}%
+\contentsline {subsection}{\numberline {3.3}SVM with Linear Kernal}{16}{}%
+\contentsline {subsection}{\numberline {3.4}Neural Network}{18}{}%
+\contentsline {subsection}{\numberline {3.5}Summary}{18}{}%
+\contentsline {subsection}{\numberline {3.6}Fine-Tune the Parameters}{19}{}%

@@ -1,0 +1,1 @@
+load mnist-1-5-8.mat;

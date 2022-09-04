@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{} Principle Component Analysis \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{images}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{p}{.}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{c}{\PYGZpc{} Normalize the data (mean or zscore)}
+\PYG{n}{images\PYGZus{}nor}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{images}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} images\PYGZus{}nor = zscore(images);}
+\PYG{c}{\PYGZpc{} Calculate the covariance matrix}
+\PYG{n}{r}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cov}\PYG{p}{(}\PYG{n}{images\PYGZus{}nor}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} Eigenvalue decomposition}
+\PYG{p}{[}\PYG{n}{v}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{eigs}\PYG{p}{(}\PYG{n}{r}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} Calculate scores}
+\PYG{n}{score}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{images\PYGZus{}nor}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{(:,}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\end{Verbatim}

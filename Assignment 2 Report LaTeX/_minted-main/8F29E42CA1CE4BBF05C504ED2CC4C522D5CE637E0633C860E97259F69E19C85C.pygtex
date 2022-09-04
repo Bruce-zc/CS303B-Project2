@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} GMM clustering \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{k}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Number of GMM components}
+\PYG{n}{options}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{statset}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}MaxIter\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{1000}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{} Options for covariance matrix type}
+\PYG{n}{Sigma}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}diagonal\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}full\PYGZsq{}}\PYG{p}{\PYGZcb{};}
+\PYG{n}{nSigma}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{Sigma}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{} Indicator for identical or nonidentical covariance matrices}
+\PYG{n}{SharedCovariance}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{n+nb}{true}\PYG{p}{,}\PYG{n+nb}{false}\PYG{p}{\PYGZcb{};}
+\PYG{n}{SCtext}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{l+s}{\PYGZsq{}true\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}false\PYGZsq{}}\PYG{p}{\PYGZcb{};}
+\PYG{n}{nSC}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{SharedCovariance}\PYG{p}{);}
+
+\PYG{n}{d}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Grid length}
+\PYG{n}{x1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{linspace}\PYG{p}{(}\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{1}\PYG{p}{))}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{1}\PYG{p}{))}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d}\PYG{p}{);}
+\PYG{n}{x2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{linspace}\PYG{p}{(}\PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{2}\PYG{p}{))}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{2}\PYG{p}{))}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d}\PYG{p}{);}
+\PYG{p}{[}\PYG{n}{x1grid}\PYG{p}{,}\PYG{n}{x2grid}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{meshgrid}\PYG{p}{(}\PYG{n}{x1}\PYG{p}{,}\PYG{n}{x2}\PYG{p}{);}
+\PYG{n}{X0}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{x1grid}\PYG{p}{(:)}\PYG{+w}{ }\PYG{n}{x2grid}\PYG{p}{(:)];}
+
+\PYG{n}{threshold}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{n}{chi2inv}\PYG{p}{(}\PYG{l+m+mf}{0.99}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{));}
+\PYG{n+nb}{count}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{i}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{nSigma}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n+nb}{j}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{nSC}
+\PYG{+w}{        }\PYG{n}{gmfit}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{fitgmdist}\PYG{p}{(}\PYG{n}{score}\PYG{p}{,}\PYG{n}{k}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}CovarianceType\PYGZsq{}}\PYG{p}{,}\PYG{n}{Sigma}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{},}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{l+s}{\PYGZsq{}SharedCovariance\PYGZsq{}}\PYG{p}{,}\PYG{n}{SharedCovariance}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{},}\PYG{l+s}{\PYGZsq{}Options\PYGZsq{}}\PYG{p}{,}\PYG{n}{options}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Fitted GMM}
+\PYG{+w}{        }\PYG{n}{clusterX}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{cluster}\PYG{p}{(}\PYG{n}{gmfit}\PYG{p}{,}\PYG{n}{score}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Cluster index}
+\PYG{+w}{        }\PYG{n}{mahalDist}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{mahal}\PYG{p}{(}\PYG{n}{gmfit}\PYG{p}{,}\PYG{n}{X0}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Distance from each grid point to each GMM component}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Draw ellipsoids over each GMM component and show clustering result.}
+\PYG{+w}{        }\PYG{n+nb}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n+nb}{count}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{h1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{gscatter}\PYG{p}{(}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{1}\PYG{p}{),}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{2}\PYG{p}{),}\PYG{n}{clusterX}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{hold}\PYG{+w}{ }\PYG{l+s}{on}
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{m}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{k}
+\PYG{+w}{                }\PYG{n}{idx}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{mahalDist}\PYG{p}{(:,}\PYG{n}{m}\PYG{p}{)}\PYG{o}{\PYGZlt{}=}\PYG{n}{threshold}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{Color}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{h1}\PYG{p}{(}\PYG{n}{m}\PYG{p}{).}\PYG{n}{Color}\PYG{o}{*}\PYG{l+m+mf}{0.75}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{o}{*}\PYG{p}{(}\PYG{n}{h1}\PYG{p}{(}\PYG{n}{m}\PYG{p}{).}\PYG{n}{Color}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n}{h2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{X0}\PYG{p}{(}\PYG{n}{idx}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{),}\PYG{n}{X0}\PYG{p}{(}\PYG{n}{idx}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}\PYG{l+s}{\PYGZsq{}.\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}Color\PYGZsq{}}\PYG{p}{,}\PYG{n}{Color}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{+w}{                }\PYG{n+nb}{uistack}\PYG{p}{(}\PYG{n}{h2}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}bottom\PYGZsq{}}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{end}
+\PYG{+w}{        }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{gmfit}\PYG{p}{.}\PYG{n}{mu}\PYG{p}{(:,}\PYG{l+m+mi}{1}\PYG{p}{),}\PYG{n}{gmfit}\PYG{p}{.}\PYG{n}{mu}\PYG{p}{(:,}\PYG{l+m+mi}{2}\PYG{p}{),}\PYG{l+s}{\PYGZsq{}kx\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}LineWidth\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}MarkerSize\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{title}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}Sigma is \PYGZpc{}s\PYGZbs{}nSharedCovariance = \PYGZpc{}s\PYGZsq{}}\PYG{p}{,}\PYG{n}{Sigma}\PYG{p}{\PYGZob{}}\PYG{n+nb}{i}\PYG{p}{\PYGZcb{},}\PYG{n}{SCtext}\PYG{p}{\PYGZob{}}\PYG{n+nb}{j}\PYG{p}{\PYGZcb{}),}\PYG{l+s}{\PYGZsq{}FontSize\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{legend}\PYG{p}{(}\PYG{n}{h1}\PYG{p}{,\PYGZob{}}\PYG{l+s}{\PYGZsq{}1\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}2\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}3\PYGZsq{}}\PYG{p}{\PYGZcb{})}
+\PYG{+w}{        }\PYG{n+nb}{hold}\PYG{+w}{ }\PYG{n}{off}
+\PYG{+w}{        }\PYG{n+nb}{count}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{count}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\end{Verbatim}

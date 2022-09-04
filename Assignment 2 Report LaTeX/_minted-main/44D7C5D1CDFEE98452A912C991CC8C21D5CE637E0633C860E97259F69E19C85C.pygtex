@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c}{\PYGZpc{} Configure the net}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{divideParam}\PYG{p}{.}\PYG{n}{trainRatio}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} training set [\PYGZpc{}]}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{divideParam}\PYG{p}{.}\PYG{n}{valRatio}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} validation set [\PYGZpc{}]}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{divideParam}\PYG{p}{.}\PYG{n}{testRatio}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} test set [\PYGZpc{}]}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{inputs}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}.}\PYG{n}{processFcns}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{};}\PYG{+w}{ }\PYG{c}{\PYGZpc{} modify the process function for inputs}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{outputs}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}.}\PYG{n}{processFcns}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}\PYGZcb{};}\PYG{+w}{ }\PYG{c}{\PYGZpc{} modify the process function for outputs}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{layers}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}.}\PYG{n}{transferFcn}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}logsig\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} the transfer function for the first layer}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{layers}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}.}\PYG{n}{transferFcn}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}logsig\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} the transfer function for the second layer}
+\PYG{n}{net}\PYG{p}{.}\PYG{n}{trainParam}\PYG{p}{.}\PYG{n}{lr}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.3}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} learning rate. You may need to adjust it in the experiment.}
+
+\PYG{c}{\PYGZpc{} train the network}
+\PYG{n}{net}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{train}\PYG{p}{(}\PYG{n}{net}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{training\PYGZus{}instance\PYGZus{}matrix}\PYG{o}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{training\PYGZus{}label\PYGZus{}vector}\PYG{o}{\PYGZsq{}}\PYG{p}{);}
+\end{Verbatim}

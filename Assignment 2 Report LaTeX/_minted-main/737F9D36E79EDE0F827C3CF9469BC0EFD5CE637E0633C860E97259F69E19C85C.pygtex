@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{model}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{svmtrain}\PYG{p}{(}\PYG{n}{training\PYGZus{}label\PYGZus{}vector}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{training\PYGZus{}instance\PYGZus{}matrix}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}\PYGZhy{}t 2 \PYGZhy{}g 0.07\PYGZsq{}}\PYG{p}{);}
+\PYG{p}{[}\PYG{n}{predict\PYGZus{}label}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{accuracy}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dec\PYGZus{}values}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{svmpredict}\PYG{p}{(}\PYG{n}{test\PYGZus{}label\PYGZus{}vector}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{test\PYGZus{}instance\PYGZus{}matrix}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{model}\PYG{p}{);}
+\end{Verbatim}

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} Hierarchical Clustering \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c}{\PYGZpc{}create the linkage tree using average\PYGZhy{}link}
+\PYG{n}{Z}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{linkage}\PYG{p}{(}\PYG{n}{score}\PYG{p}{(:,}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{),}\PYG{l+s}{\PYGZsq{}average\PYGZsq{}}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}euclidean\PYGZsq{}}\PYG{p}{);}
+\PYG{n}{c}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{cluster}\PYG{p}{(}\PYG{n}{Z}\PYG{p}{,}\PYG{l+s}{\PYGZsq{}maxclust\PYGZsq{}}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{);}
+\PYG{c}{\PYGZpc{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\end{Verbatim}
